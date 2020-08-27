@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='todo'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <title>Todo App</title>
+</head>
+<body>
+    <div ng-controller='todoController'>
+        <h1>My Todos</h1>
+        <form ng-submit='addTodo()'>
+            <input type="text" ng-model='new_todo' placeholder="write your new todo here">
+            <input type="submit" value="Add Todo">
+            <p>{{error_message}}</p>
+        </form>
+        <button ng-click="completed=true">Show Completed</button>
+        <button ng-click="completed=false">Show Pending</button>
+        <ol>
+            <li ng-repeat='todo in todos' ng-show='todo.completed==completed'>
+                {{todo.content}}
+                <button ng-show='todo.completed' ng-click='switchCompleteStatus(todo)'>Mark Incomplete</button>
+                <button ng-show='!todo.completed' ng-click='switchCompleteStatus(todo)'>Mark Complete</button>
+                <button ng-click='deleteTodo(todo)'>Delete Todo</button>
+            </li>
+            
+        </ol>
+    </div>
+</body>
+</html>
